@@ -12,13 +12,27 @@
 export default {
 	name: 'Fun',
 	data: () => ({
-		nakama: ['neko', 'inu', 'ookami', 'hebi'],
+		auth: false,
+		nakama: [],
 	}),
 	mounted() {
 		this.$nextTick().then(() => {
+			this.auth = true
 			console.log('nextTick')
 			console.log(this.$refs['elem'])
 		})
+	},
+	methods: {
+		async update() {
+			this.nakama = ['neko', 'inu', 'ookami', 'hebi']
+		},
+	},
+	watch: {
+		auth(auth) {
+			if (auth) {
+				this.update()
+			}
+		},
 	},
 }
 </script>
